@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-color: #7159c1;
+    --secundary-color: #f7DF1E;
+    --third-color: #262529;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #000000;
+}
+
+/*** CABEÇALHO ***/
+
+header{
+    background-color: grey;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    border-bottom: 3px solid white;
+    box-sizing: border-box;
+}
+
+.links{
+    font-size: 30px;
+}
+
+.links a + a {
+    margin-left: 35px;
+}
+
+.links a{
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+.links a.active{
+    font-weight: bold;
+    color: #7159c1;
+}
+
+.links a:hover{
+    color: #7159c1;
+}
+
+.links a::after{
+    content: "";
+    width: 0;
+    height: 3px;
+    background-color: #7159c1;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+}
+
+.links a:hover::after{
+    width: 100%;
+    transition: width 700ms cubic-bezier(0.71, 0.01, 0, 0.9);
+}
+
+/***CARD***/
+
+.card{
+    background-color: white;
+    width: 900px;
+    min-height: 500px;
+    border-radius: 10px 10px;
+
+    display: grid;
+    grid-template-columns: 320px 1fr;
+
+    margin: 45px auto;
+
+    box-shadow: 20px 20px 20px 2px rgb(255, 255, 255, 12%);
+
+    opacity: 0;
+
+    animation: up;
+    animation-duration: 600ms;
+    animation-timing-function: ease-in;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+@keyframes up{
+    from{
+        transform: translate(15px);
+    }
+    to{
+        opacity: 1;
+    }
+}
+.avatar{
+    border-radius: 10px;
+    width: 320px;
+    
+    margin: 3px;
+}
+
+
+/*** DETAILS ***/
+
+.details{
+    padding: 20px;
+}
+
+.details .item{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 8px 0;
+}
+
+.details .item:last-child{
+    border: none;
+}
+
+.details h1,
+.details .item div:nth-child(1){
+    color: #777;
+    line-height: 24px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    font-weight: normal;
+}
+
+.details .item div:nth-child(2){
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.details h1{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    color: var(--third-color);
+    text-align: center;
+}
+
+.details .item span{
+    padding: 8px 16px;
+    display: inline-block;
+    background-color: rgba(255, 255, 0, 0.89);
+    border-radius: 16px;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/***FORMULARIO***/
+
+input{
+    width: 100%;
+    outline: none; /**contorno azul em volta do imput**/
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+input[type="radio"]{
+    width: initial;
+    margin-right: 4px;
+}
+
+input::placeholder{
+    font-size: 16px;
+    font-weight: normal;
+}
+
+button[type="submit"],
+a.button
+{
+    padding: 8px 16px;
+    background-color: var(--third-color);
+    border-radius: 4px;
+    font-size: 16px ;
+    margin-top: 32px;
+    width: 100%;
+    color: white;
+}
+
+a.button{
+    display: block;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-align: center;
+}
