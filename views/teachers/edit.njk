@@ -2,14 +2,38 @@
 
 {% block content %}
 
-<form class="card" method="POST" action="/teachers">  
-        <div class="avatar"style="background: url({{teacher.avatar_url}}) no-repeat center center/ cover"></div>
+    <div class="card">
+
+        <section class="avatar" style="background: url({{teacher.avatar_url}}) no-repeat center center/ cover"></section>
 
         <section class="details">
-            <h1>Editar Professor</h1>
+            <form id="form-save" method="POST" action="/teachers?_method=PUT">
+                <h1>Editar Professor</h1>
 
-            {% include "teachers/fields.njk"%}
-        </section>  
+                {% include "teachers/fields.njk"%}
 
-</form>
+                <input type="hidden" name="id" value="{{teacher.id}}">
+            </form>
+
+            <form id="form-delete" action="/teachers?_method=DELETE" method="POST">
+                <input type="hidden" name="id" value="{{teacher.id}}">
+            </form>
+
+            <div class="buttons">
+                <button id="delete" type="submit" form="form-delete">Deletar</button>
+            </div>
+
+        </section>
+        <script>
+            const formDelete = document.querySelector("#form-delete")
+            formDelete.addEventListener("submit", function(event) {
+                const confirmation = confirm("Deseja Deletar?")
+                if (!confirmation) {
+                    event.preventDefault()
+                }
+            })
+        </script>
+
+    </div>
+
 {% endblock content %}

@@ -1,42 +1,36 @@
+{# Listagem de instrutores #}
+
 {% extends "layout.njk" %}
 
 {% block content %}
 
-<div class="card">   
-        <div class="avatar"style="background: url(https://source.unsplash.com/collection/2109299/500x500) no-repeat center center/ cover"></div>
-        <div class="details"> 
-        
-        <section class="details">
-        <h1>Detalhes</h1>
-            <div class="item">
-                <div>Nome</div>
-                <div>Tony Stark</div>
-            </div>
-            <div class="item">
-                <div>Idade</div>
-                <div>57</div>
-            </div>
-            <div class="item">
-                <div>Grau de Escolaridade</div>
-                <div>Pós-Doutorado</div>
-            </div>
-            <div class="item">
-                <div>Tipo de Aula</div>
-                <div>Presencial</div>
-            </div>
-            <div class="item">
-                <div>Área de atuação</div>
-                <span>Engenharia Mecânica</span>
-                <span>Física</span>
-                <span>Robótica</span>
-            </div>
-            <div class="item">
-                <div>Data de Cadastro na plataforma</div>
-                <div>20/05/2020</div>
-            </div>
-        </section>    
-    </div>
-
+<div class="card table-container">
+    <a href="/teachers/create">Novo</a>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Instrutor</th>
+                <th>Atendimento</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for teacher in teachers%}
+            <tr>  
+                <td>
+                    <span style="background-image: url({{teacher.avatar_url}})"></span>
+                    {{teacher.name}}
+                </td> 
+                <td>
+                    {% for service in teacher.services.split(",")%}
+                    <span>{{service}}</span>
+                    {%endfor%}
+                </td>
+                <td><a href="/teachers/{{teacher.id}}">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock content %}
 

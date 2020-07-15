@@ -23,5 +23,17 @@ module.exports = {
 
         return `${year}-${month}-${day}`
 
-    }
+    },
+/*     populateUFs: function populateUFs(uf){
+        const ufSelect = document.querySelector("select[name=uf");
+        fetch("https://servicodados.ibge.gov.br/api/v1/localidades/estados")
+        .then (function(res){
+            return res.json()
+        })
+        .then (function(states){
+            for (const state of states){
+                ufSelect.innerHTML += `<option value="${state.id}">${state.nome}</option>`
+            }
+        })
+    } */
 }

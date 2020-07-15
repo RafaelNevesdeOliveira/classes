@@ -1,35 +1,21 @@
 <div class="item">
     <div>URL Imagem</div>
     <div>
-        <input 
-            type="url"
-            name="avatar_url"
-            placeholder="http://"
-            value="{{teacher.avatar_url}}"
-        >
+        <input type="url" name="avatar_url" placeholder="http://" value="{{teacher.avatar_url}}">
     </div>
 </div>
 
 <div class="item">
     <div>Nome Completo</div>
     <div>
-        <input 
-            type="text" 
-            name="name" 
-            placeholder="Nome Completo"
-            value="{{teacher.name}}"
-        >
+        <input type="text" name="name" placeholder="Nome Completo" value="{{teacher.name}}">
     </div>
 </div>
 
 <div class="item">
     <div>Data de Nascimento</div>
     <div>
-        <input 
-            type="date" 
-            name="birth"
-            value="{{teacher.birth}}"
-        >
+        <input type="date" name="birth" value="{{teacher.birth}}">
     </div>
 </div>
 
@@ -37,29 +23,13 @@
     <div>Grau de Escolaridade</div>
     <div>
         <select name="schooling">
-            <option 
-                value="Medio"
-                {% if teacher.schooling == "Medio"%}
-                selected {% endif %} 
-                >Ensino Médio Completo
+            <option value="Medio" {% if teacher.schooling == "Medio"%} selected="selected" {% endif %}>Ensino Médio Completo
             </option>
-            <option 
-                value="Superior" 
-                {% if teacher.schooling == "Superior"%} 
-                selected {% endif %} 
-                >Ensino Superior Completo
+            <option value="Superior" {% if teacher.schooling == "Superior"%} selected="selected" {% endif %}>Ensino Superior Completo
             </option>
-            <option 
-                value="Mestrado" 
-                {% if teacher.schooling == "Mestrado"%} 
-                selected {% endif %} 
-                >Mestrado
+            <option value="Mestrado" {% if teacher.schooling == "Mestrado"%} selected="selected" {% endif %}>Mestrado
             </option>
-            <option 
-                value="Doutorado" 
-                {% if teacher.schooling == "Doutorado"%} 
-                selected {% endif %}
-                >Doutorado
+            <option value="Doutorado" {% if teacher.schooling == "Doutorado"%} selected="selected" {% endif %}>Doutorado
             </option>
         </select>
     </div>
@@ -69,38 +39,33 @@
     <div>Tipo de Aula</div>
     <div>
         <span>
-            <input 
-                type="radio" 
-                name="class_type"
-                value="P" 
-                {% if teacher.class_type == "P"%}
-                checked
-                {% endif %} 
-                >Presencial
+            <input type="radio" name="class_type" value="P" {% if teacher.class_type == "P"%} checked="checked" {% endif %}>Presencial
         </span>
         <span>
-            <input 
-                type="radio" 
-                name="class_type" 
-                value="D"
-                {% if teacher.class_type == "D"%}
-                {% endif %}
-                >Distância
+            <input type="radio" name="class_type" value="D" {% if teacher.class_type == "D"%} {% endif %}>Distância
         </span>
     </div>
 </div>
+
+{# <div class="item">
+    <div class="field">
+        <div>Estado</div>
+        <select name="uf" required="required">
+            <option value="" selected="selected">Selecione o Estado</option>
+        </select>
+
+        <input type="hidden" name="state" value="{{teacher.state}}" >
+    </div>
+</div> #}
 
 <div class="item">
     <div>Área de atuação</div>
     <div>
-        <input 
-            type="text" 
-            name="services" 
-            placeholder="Digite a as aulas disponíveis separando por vírgula"
-            value="{{teacher.services}}"
-        >
+        <input type="text" name="services" placeholder="Digite a as aulas disponíveis separando por vírgula" value="{{teacher.services}}">
     </div>
 </div>
 
-<button type="submit">Salvar</button>
+<div class="buttons">
+    <button id="save" type="submit">Salvar</button>
+</div>
 
