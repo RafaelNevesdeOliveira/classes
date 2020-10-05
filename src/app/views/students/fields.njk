@@ -29,33 +29,34 @@
 <div class="item">
     <div>Ano Escolar</div>
     <div>
-        <select name="schoolYear">
-            <option value="5° ano do ensino fundamental"{% if student.schoolYear == "5° ano do ensino fundamental"%}selected{%endif%}>
+        <select name="schoolyear">
+            <option value="5° ano do ensino fundamental"{% if student.schoolyear == "5° ano do ensino fundamental" %} selected="selected" {%endif%}>
                 5° ano do ensino fundamental
             </option>
-            <option value="6° ano do ensino fundamental"{% if student.schoolYear == "6° ano do ensino fundamental"%}selected{%endif%}>
+            <option value="6° ano do ensino fundamental"{% if student.schoolyear == "6° ano do ensino fundamental" %} selected="selected" {%endif%}>
                 6° ano do ensino fundamental
             </option>
-            <option value="7° ano do ensino fundamental"{% if student.schoolYear == "7° ano do ensino fundamental"%}selected{%endif%}>
+            <option value="7° ano do ensino fundamental"{% if student.schoolyear == "7° ano do ensino fundamental" %} selected="selected" {%endif%}>
                 7° ano do ensino fundamental
             </option>
-            <option value="8° ano do ensino fundamental"{% if student.schoolYear == "8° ano do ensino fundamental"%}selected{%endif%}>
+            <option value="8° ano do ensino fundamental"{% if student.schoolyear == "8° ano do ensino fundamental" %} selected="selected" {%endif%}>
                 8° ano do ensino fundamental
             </option>
-            <option value="9° ano do ensino fundamental"{% if student.schoolYear == "9° ano do ensino fundamental"%}selected{%endif%}>
+            <option value="9° ano do ensino fundamental"{% if student.schoolyear == "9° ano do ensino fundamental" %} selected="selected" {%endif%}>
                 9° ano do ensino fundamental
             </option>
-            <option value="1° ano do ensino médio"{% if student.schoolYear == "1° ano do ensino médio"%}selected{%endif%}>
+            <option value="1° ano do ensino médio"{% if student.schoolyear == "1° ano do ensino médio" %} selected="selected" {%endif%}>
                 1° ano do ensino médio
             </option>
-            <option value="2° ano do ensino médio"{% if student.schoolYear == "2° ano do ensino médio"%}selected{%endif%}>
+            <option value="2° ano do ensino médio"{% if student.schoolyear == "2° ano do ensino médio" %} selected="selected" {%endif%}>
                 2° ano do ensino médio
             </option>
-            <option value="3° ano do ensino médio"{% if student.schoolYear == "3° ano do ensino médio"%}selected{%endif%}>
+            <option value="3° ano do ensino médio"{% if student.schoolyear == "3° ano do ensino médio" %} selected="selected" {%endif%}>
                 3° ano do ensino médio
             </option>
         </select>
     </div>
+</div>
 
 <div class="item">
     <div>Carga horária semanal</div>
@@ -63,12 +64,9 @@
         <input 
             type="number" 
             name="time"
-            value="{{member.time}}"
+            value="{{student.time}}"
         >
     </div>
-</div>
-
-
 </div>
 
 
