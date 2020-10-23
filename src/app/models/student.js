@@ -5,7 +5,10 @@ const { age, date } = require('../../lib/utils')
 module.exports = {
     all(callback) {
         //função apenas chama quando leitura do banco de dados
-        db.query(`SELECT * FROM students`, function (err, results) {
+        db.query(`
+            SELECT * 
+            FROM students
+            ORDER BY name ASC`, function (err, results) {
             if (err) throw `Database error!${err}`
 
             callback(results.rows)
@@ -19,8 +22,9 @@ module.exports = {
             email,
             birth,
             schoolyear,
-            time
-            ) VALUES ($1, $2, $3, $4, $5, $6)
+            time, 
+            teacher_id
+            ) VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id
         `
         const values = [
@@ -29,7 +33,8 @@ module.exports = {
             data.email,
             date(data.birth).iso,
             data.schoolyear,
-            data.time
+            data.time,
+            data.teacher
         ]
 
         db.query(query, values, function (err, results) {
@@ -39,9 +44,10 @@ module.exports = {
     },
     find(id, callback){
         db.query(`
-                SELECT * 
-                FROM students 
-                WHERE id = $1`, [id], function(err, results){
+            SELECT students.*, teachers.name AS teacher_name
+            FROM students 
+            LEFT JOIN teachers ON (students.teacher_id = teachers.id)
+            WHERE students.id = $1`, [id], function(err, results){
                     if (err) throw `Database error!${err}`
                     callback(results.rows[0])
         })
@@ -54,8 +60,9 @@ module.exports = {
                 email=($3),
                 birth=($4),
                 schoolyear=($5),
-                time=($6)
-            WHERE id = $7
+                time=($6),
+                teacher_id=($7)
+            WHERE id = $8
         `
 
         const values = [
@@ -65,12 +72,13 @@ module.exports = {
             date(data.birth).iso,
             data.schoolyear,
             data.time,
+            data.teacher,
             data.id
         ]
 
         db.query(query, values, function(err, results){
             if (err) throw `Database error!${err}`  
-            console.log(values)
+
             callback()
         })
     },
@@ -84,6 +92,13 @@ module.exports = {
             if (err) throw `Database error!${err}`
 
             return callback()
+        })
+    },
+    teachersSelectOptions(callback){
+        db.query(`SELECT name, id FROM teachers`, function(err, results){
+            if (err) throw 'Database error!'
+
+            callback(results.rows)
         })
     }
 }

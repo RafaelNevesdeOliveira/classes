@@ -1,4 +1,4 @@
-const student = require("../models/student")
+const Student = require("../models/student")
 const { age, date } = require("../../lib/utils")
 
 
@@ -6,14 +6,17 @@ module.exports = {
     /* Shorthand Object JS */
     index(req, res) {
 
-        student.all(function(students){
+        Student.all(function(students){
             return res.render("students/index", {students})
         })
 
     },
     create(req, res) {
-        return res.render('students/create')
 
+        Student.teachersSelectOptions(function(options){
+            return res.render('students/create', { teacherOptions: options})
+        })
+        
     },
     post(req, res) {
         const keys = Object.keys(req.body);
@@ -22,13 +25,13 @@ module.exports = {
                 return res.send("Please, fill all the fields!");
             }
         }
-        student.create(req.body, function(student){
+        Student.create(req.body, function(student){
             return res.redirect(`/students/${student.id}`)
         })
         
     },
     show(req, res) {
-        student.find(req.params.id, function(student){
+        Student.find(req.params.id, function(student){
             if (!student) return res.send("student not found!")
 
             student.age = age(student.birth)
@@ -37,12 +40,14 @@ module.exports = {
         })
     },
     edit(req, res) {
-        student.find(req.params.id, function(student){
+        Student.find(req.params.id, function(student){
             if (!student) return res.send("student not found!")
 
             student.birth = date(student.birth).iso
 
-            return res.render("students/edit", {student})
+            Student.teachersSelectOptions(function(options){
+                return res.render('students/edit', {student, teacherOptions: options})
+            })
         })
     },
     put(req, res) {
@@ -52,12 +57,12 @@ module.exports = {
                 return res.send("Please, fill all the fields!");
             }
         }
-        student.update(req.body, function(){
+        Student.update(req.body, function(){
             return res.redirect(`/students/${req.body.id}`)
         })
     },
     delete(req, res) {
-        student.delete(req.body.id, function(){
+        Student.delete(req.body.id, function(){
             return res.redirect(`/students`)
         })
     },

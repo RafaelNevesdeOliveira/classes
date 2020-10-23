@@ -6,10 +6,17 @@ module.exports = {
     /* Shorthand Object JS */
     index(req, res) {
 
-        teacher.all(function(teachers){
-            return res.render("teachers/index", {teachers})
-        })
+        const {filter} = req.query
 
+        if(filter){
+            teacher.findBy(filter, function(teachers){
+                return res.render("teachers/index", {teachers, filter})
+            })
+        }else{
+            teacher.all(function(teachers){
+                return res.render("teachers/index", {teachers})
+            })
+        }
     },
     create(req, res) {
         return res.render('teachers/create')

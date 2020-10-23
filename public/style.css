@@ -294,3 +294,36 @@ td:last-child{
     font-size: 12px;
     font-weight: bold;
 }
+
+/** FILTER **/
+
+.table-container .header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.table-container .header a{
+    margin: 0;
+    width: 120px;
+}
+
+.table-container .header form{
+    display: grid;
+    grid-template-columns: 1fr 120px;
+    align-items: center;
+    grid-gap: 8px;
+}
+
+.table-container .header form input{
+    border:1px solid #d9d9d9;
+    padding: 4px 8px;
+    box-sizing:border-box;
+}
+
+.table-container .header form button{
+    margin: 0px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
